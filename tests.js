@@ -26,3 +26,11 @@ var sexp = require("./sexp");
     var s = new sexp.sexp("(we (need (to (go) deeper ...)))");
     assert.deepEqual(s.data, ['we', ['need', ['to', ['go'], 'deeper', '...']]]);
 })();
+
+(function testWithStrings() {
+    var s = new sexp.sexp('(we (need (to "go deeper")))');
+    assert.deepEqual(s.data, ['we', ['need', ['to', 'go deeper']]]);
+    
+    var s = new sexp.sexp('(we (need "an empty string" "")))');
+    assert.deepEqual(s.data, ['we', ['need', 'an empty string', '']]]);
+})();

@@ -33,6 +33,12 @@ sexp.prototype = {
                 node = null;
                 break;
               
+              case '"':
+                node = '';
+                while((token = this.scan()) != '"')
+                  node += token;
+                break;
+              
               default:
                 if (token != null)
                     node = (node == null) ? token : node+token;
